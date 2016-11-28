@@ -13,7 +13,7 @@
        restrict:'AE',
        scope:{
              found:'=',
-             onRemove:'&'
+             remove:'&'
        },
       controller :FoundItemsDirectiveController,
       controllerAs : 'fid',
@@ -28,24 +28,6 @@
 
   }
 
-
-
-
-
-  // function FoundItemsDirective(){
-  //   var ddo={
-  //     templateUrl:'foundItemDirective.html',
-  //     restrict:'AE',
-  //     scope:{
-  //       found:'<'
-  //     },
-  //     controller : 'FoundItemsDirective',
-  //     controllerAs : 'fid',
-  //     bindToController : true
-  //   };
-  //   return ddo;
-  // };
-
   NarrowItDownController.$inject=['MenuSearchService'];
   function NarrowItDownController(MenuSearchService){
     var search=this;
@@ -57,6 +39,10 @@
         console.log("controller found Items Length::",search.found.length);
         console.log("controller found Items",search.found);
       });
+    }
+
+    search.dontWantThisOne=function(index){
+      search.found.splice(index,1);
     }
     return search;
   }
