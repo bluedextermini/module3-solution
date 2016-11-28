@@ -4,17 +4,47 @@
   angular.module('NarrowItDownApp',[])
   .service('MenuSearchService', MenuSearchService)
   .controller('NarrowItDownController',  NarrowItDownController)
-  .directive('foundItemsDirective',FoundItemsDirective);
-
+  .directive('foundItems',FoundItemsDirective)
+  .controller('FoundItemsDirectiveController', FoundItemsDirectiveController);
 
   function FoundItemsDirective(){
     var ddo={
-      templateUrl
-
-    }
+       templateUrl:'foundItemDirective.html',
+       restrict:'AE',
+       scope:{
+             found:'=',
+             onRemove:'&'
+       },
+      controller :FoundItemsDirectiveController,
+      controllerAs : 'fid',
+      bindToController : true
+    };
     return ddo;
+  }
+
+  function FoundItemsDirectiveController(){
+    var directiveCtrl=this;
+    console.log('directive ::fid.found',directiveCtrl.found);
 
   }
+
+
+
+
+
+  // function FoundItemsDirective(){
+  //   var ddo={
+  //     templateUrl:'foundItemDirective.html',
+  //     restrict:'AE',
+  //     scope:{
+  //       found:'<'
+  //     },
+  //     controller : 'FoundItemsDirective',
+  //     controllerAs : 'fid',
+  //     bindToController : true
+  //   };
+  //   return ddo;
+  // };
 
   NarrowItDownController.$inject=['MenuSearchService'];
   function NarrowItDownController(MenuSearchService){
@@ -60,7 +90,7 @@
       }
       var isMatchFound=function(value){
         var match= (value.description.toLowerCase().indexOf(service.searchTerm))>-1? true: false;
-        console.log(value.description, match);
+        //console.log(value.description, match);
         return match;
       }
 

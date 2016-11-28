@@ -20,7 +20,8 @@
     </div>
 
     <!-- found-items should be implemented as a component -->
-    <found-items found-items="...." on-remove="...."></found-items>
+    <div ng-if='search.found.length>0'>test</div>
+    <found-items ng-if='search.found.length>0' found='search.found'  onRemove='search.dontWantThisOne(index)'></found-items>
   </div>
 
 </body>
