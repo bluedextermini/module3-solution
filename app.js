@@ -4,16 +4,15 @@
   angular.module('NarrowItDownApp',[])
   .service('MenuSearchService', MenuSearchService)
   .controller('NarrowItDownController',  NarrowItDownController)
-  .directive('foundItems',FoundItemsDirective)
-  .controller('FoundItemsDirectiveController', FoundItemsDirectiveController);
+  .directive('foundItems',FoundItemsDirective);
+  //.controller('FoundItemsDirectiveController', FoundItemsDirectiveController);
 
   function FoundItemsDirective(){
     var ddo={
        templateUrl:'foundItemDirective.html',
-       restrict:'AE',
        scope:{
-             found:'=',
-             remove:'&'
+             found:'<',
+             onRemove:'&'
        },
       controller :FoundItemsDirectiveController,
       controllerAs : 'fid',
@@ -41,7 +40,8 @@
       });
     }
 
-    search.dontWantThisOne=function(index){
+    search.remove=function(index){
+      console.log("dontWantThisOne() called..");
       search.found.splice(index,1);
     }
     return search;
@@ -79,8 +79,6 @@
         //console.log(value.description, match);
         return match;
       }
-
-
-  }
+}
 
 }());
