@@ -75,7 +75,7 @@
        return deferred.promise;
       }
       var isMatchFound=function(value){
-        var match= (value.description.toLowerCase().indexOf(service.searchTerm))>-1? true: false;
+        var match= (service.searchTerm!="" && value.description.toLowerCase().indexOf(service.searchTerm))>-1? true: false;
         //console.log(value.description, match);
         return match;
       }
